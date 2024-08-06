@@ -1,10 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    experimental: {
-      staleTimes: {
-        dynamic: 30,
-      },
+  experimental: {
+    staleTimes: {
+      dynamic: 30,
     },
-  };
-  
-  export default nextConfig;
+  },
+  serverExternalPackages: ["@node-rs/argon2"],
+};
+
+export default nextConfig;
