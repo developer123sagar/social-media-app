@@ -14,3 +14,27 @@ datasource db {
   url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
+
+model User {
+  id           String    @unique
+  username     String    @unique
+  displayName  String
+  email        String?   @unique
+  passwordHash String?
+  googleId     String?   @unique
+  avatarUrl    String?
+  bio          String?
+  session      Session[]
+  createdAt    DateTime  @default(now())
+
+  @@map("users")
+}
+
+model Session {
+  id        String   @unique
+  userId    String
+  expiresAt DateTime
+  User      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
