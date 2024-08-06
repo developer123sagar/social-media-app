@@ -39,7 +39,7 @@ interface DatabaseUserAttributes {
     googleId: string | null;
 }
 
-export const validateReques = cache(
+export const validateRequest = cache(
     async (): Promise<
         { user: User, session: Session } | { user: null, session: null }
     > => {

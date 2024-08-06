@@ -73,4 +73,16 @@
   body {
     @apply bg-background text-foreground;
   }
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+  .flex-col-center {
+    @apply flex flex-col items-center justify-center;
+  }
+  .flex-between {
+    @apply flex items-center justify-between;
+  }
+  .h {
+    @apply border border-red-500;
+  }
 }
