@@ -16,8 +16,8 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | twittee",
-    default: "twittee",
+    template: "%s | Twittee",
+    default: "Twittee",
   },
   description: "The social media app for everyone",
 };
