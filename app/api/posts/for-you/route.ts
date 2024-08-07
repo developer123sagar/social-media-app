@@ -24,7 +24,6 @@ export async function GET(req: NextRequest) {
         });
 
         const nextCursor = posts.length > pageSize ? posts[pageSize].id : null
-        console.log(nextCursor)
 
         const data: PostsPage = {
             posts: posts.slice(0, pageSize),
