@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import localFont from "next/font/local";
 
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
 import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 
@@ -30,15 +31,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Toaster />
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        <ReactQueryProvider>
+          <Toaster />
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );
