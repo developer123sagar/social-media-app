@@ -7,6 +7,7 @@ import { PostData } from "@/types";
 interface PostProps {
   post: PostData;
 }
+
 const Posts = ({ post }: PostProps) => {
   return (
     <article className="space-y-3 rounded-2xl bg-card p-5 shadow-sm">
