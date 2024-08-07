@@ -27,7 +27,6 @@ interface UserButtonProps {
 
 export default function UserButton({ className }: UserButtonProps) {
   const { user } = useSession();
-  console.log(user)
 
   const { theme, setTheme } = useTheme();
 
