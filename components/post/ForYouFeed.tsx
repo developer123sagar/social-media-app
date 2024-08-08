@@ -1,6 +1,6 @@
 "use client";
 
-import { Loader } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 import InfiniteScrollContainer from "@/components/InfiniteScrollContainer";
@@ -60,7 +60,7 @@ export default function ForYouFeed() {
       {posts.map((post) => (
         <Posts key={post.id} post={post} />
       ))}
-      {isFetchingNextPage && <Loader className="mx-auto my-3 animate-spin" />}
+      {isFetchingNextPage && <Loader2 className="mx-auto my-3 animate-spin" />}
     </InfiniteScrollContainer>
   );
 }
