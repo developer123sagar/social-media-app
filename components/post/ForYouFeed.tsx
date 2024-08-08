@@ -60,9 +60,7 @@ export default function ForYouFeed() {
       {posts.map((post) => (
         <Posts key={post.id} post={post} />
       ))}
-      {
-        isFetchingNextPage && <Loader className="animate-spin mx-auto my-3" />
-      }
+      {isFetchingNextPage && <Loader className="mx-auto my-3 animate-spin" />}
     </InfiniteScrollContainer>
   );
 }
