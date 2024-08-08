@@ -37,7 +37,7 @@ async function WhoToFollow() {
       },
     },
     select: getUserDataSelect(user.id),
-    take: 5,
+    take: 4,
   });
 
   return (
@@ -99,7 +99,7 @@ async function TrendingTopics() {
   const trendingTopics = await getTrendingTopics();
 
   return (
-    <div className="space-y-5 rounded-2xl bg-card p-5 shadow-sm">
+    <div className="space-y-3.5 rounded-2xl bg-card p-5 shadow-sm">
       <div className="text-xl font-bold">Trends for you</div>
       {trendingTopics.map(({ hashtag, count }) => {
         const title = hashtag.split("#")[1];
