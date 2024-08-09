@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { formatNumber } from "@/helpers";
 import { FollowerInfo, getUserDataSelect, UserData } from "@/types";
 import { validateRequest } from "@/auth";
+import EditProfileButton from "@/components/profile/EditProfileButton";
 
 interface PageProps {
   params: { username: string };
@@ -115,7 +116,7 @@ async function UserProfile({ user, loggedInUserId }: UserProfileProps) {
           </div>
         </div>
         {user.id === loggedInUserId ? (
-          <Button>Edit profile</Button>
+          <EditProfileButton user={user} />
         ) : (
           <FollowButton userId={user.id} initialState={followerInfo} />
         )}

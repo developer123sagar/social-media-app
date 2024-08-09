@@ -1,9 +1,12 @@
-import type { Metadata } from "next";
-import { ThemeProvider } from "next-themes";
 import localFont from "next/font/local";
+import type { Metadata } from "next";
+import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+import { ThemeProvider } from "next-themes";
 
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
 import { Toaster } from "@/components/ui/toaster";
+import { extractRouterConfig } from "uploadthing/server";
+import { fileRouter } from "@/app/api/uploadthing/core";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -20,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s | Twittee",
     default: "Twittee",
   },
-  description: "The social media app for everyone",
+  description: "The Place to post what you feel freely",
 };
 
 export default function RootLayout({
@@ -31,6 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <NextSSRPlugin routerConfig={extractRouterConfig(fileRouter)} />
         <ReactQueryProvider>
           <Toaster />
           <ThemeProvider
