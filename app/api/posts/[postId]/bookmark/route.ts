@@ -1,6 +1,6 @@
 import prisma from "@/lib/prisma";
 import { validateRequest } from "@/auth";
-import { LikeInfo } from "@/types";
+import { BookmarkInfo, LikeInfo } from "@/types";
 
 export async function GET(
     req: Request,
@@ -13,31 +13,19 @@ export async function GET(
             return Response.json({ error: "Unauthorized" }, { status: 401 });
         }
 
-        const post = await prisma.post.findUnique({
-            where: { id: postId },
-            select: {
-                likes: {
-                    where: {
-                        userId: loggedInUser.id
-                    },
-                    select: {
-                        userId: true
-                    }
-                },
-                _count: {
-                    select: {
-                        likes: true
-                    }
+        const bookmark = await prisma.bookmark.findUnique({
+            where: {
+                userId_postId: {
+                    userId: loggedInUser.id,
+                    postId
                 }
-            }
+            },
         })
-        if (!post) {
-            return Response.json({ error: "post not found" }, { status: 404 });
+        if (!bookmark) {
+            return Response.json({ error: "bookmark not found" }, { status: 404 });
         }
 
-        const data: LikeInfo = {
-            likes: post._count.likes, isLikedByUser: !!post.likes.length
-        }
+        const data: BookmarkInfo = { isBookmarkedByUser: !!bookmark }
 
         return Response.json(data);
 
@@ -57,7 +45,7 @@ export async function POST(
             return Response.json({ error: "Unauthorized" }, { status: 401 });
         }
 
-        await prisma.like.upsert({
+        await prisma.bookmark.upsert({
             where: {
                 userId_postId: {
                     userId: loggedInUser.id,
@@ -89,7 +77,7 @@ export async function DELETE(
             return Response.json({ error: "Unauthorized" }, { status: 401 });
         }
 
-        await prisma.like.deleteMany({
+        await prisma.bookmark.deleteMany({
             where: {
                 userId: loggedInUser.id,
                 postId
