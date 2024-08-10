@@ -14,7 +14,7 @@ import { Media } from "@prisma/client";
 import { PostData } from "@/types";
 import { useSession } from "@/providers/SessionProvider";
 import LikeButton from "./LikeButton";
-import BookmarkButton from "./BookmarkButton";
+import BookmarkButton from "./bookmark/BookmarkButton";
 
 interface PostProps {
   post: PostData;
