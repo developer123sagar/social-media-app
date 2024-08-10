@@ -145,6 +145,7 @@ function MediaPreview({ media }: MediaPreviewProps) {
           ref={videoRef}
           src={media.url}
           controls
+          loop
           className="mx-auto size-fit max-h-[30rem] rounded-2xl"
         />
       </div>
