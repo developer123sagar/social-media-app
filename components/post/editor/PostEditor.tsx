@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { ImageIcon, Loader2, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { useDropzone } from "@uploadthing/react";
 
 const PostEditor = () => {
   const { user } = useSession();
@@ -27,6 +28,12 @@ const PostEditor = () => {
     startUpload,
     uploadProgress,
   } = useMediaUpload();
+
+  const { getRootProps, getInputProps, isDragAccept } = useDropzone({
+    onDrop: startUpload,
+  });
+
+  const { onClick, ...rootProps } = getRootProps();
 
   const editor = useEditor({
     extensions: [

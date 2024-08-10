@@ -14,10 +14,11 @@ const SignUp = () => {
       <div className="flex h-full max-h-[40rem] w-full max-w-[64rem] overflow-hidden rounded-2xl bg-card shadow-2xl">
         <div className="w-full space-y-10 overflow-y-auto p-10 md:w-1/2">
           <div className="space-y-1 text-center">
-            <h1 className="text-3xl font-bold">Sign up to Twittee</h1>
+            <h1 className="text-3xl font-bold">
+              Sign up to <span className="text-primary">Twittee</span>
+            </h1>
             <p className="text-muted-foreground">
-              A place where even <span className="italic">you</span> can find a
-              friend.
+              A place to share your thoughts freely.
             </p>
           </div>
           <div className="space-y-5">
