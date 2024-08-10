@@ -12,13 +12,13 @@ import "cropperjs/dist/cropper.css";
 
 interface CropImageDialogProps {
   src: string;
-  cropAspectRation: number;
+  cropAspectRatio: number;
   onCropped: (blob: Blob | null) => void;
   onClose: () => void;
 }
 
 const CropImageDialog = ({
-  cropAspectRation,
+  cropAspectRatio,
   onClose,
   onCropped,
   src,
@@ -41,13 +41,13 @@ const CropImageDialog = ({
         </DialogHeader>
         <Cropper
           src={src}
-          aspectRatio={cropAspectRation}
+          aspectRatio={cropAspectRatio}
           guides={false}
           zoomable={false}
           ref={cropperRef}
           className="mx-auto size-fit"
         />
-        <DialogFooter>
+        <DialogFooter className="lex flex-col gap-2 sm:flex-none sm:gap-0">
           <Button variant={"secondary"} onClick={onClose}>
             Cancel
           </Button>

@@ -188,7 +188,7 @@ function AvatarInput({ src, onImageCropped }: AvatarInputProps) {
       {imageToCrop && (
         <CropImageDialog
           src={URL.createObjectURL(imageToCrop)}
-          cropAspectRation={1}
+          cropAspectRatio={1}
           onCropped={onImageCropped}
           onClose={() => {
             setImageToCrop(undefined);
