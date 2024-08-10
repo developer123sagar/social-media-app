@@ -18,10 +18,10 @@ export async function GET(req: Request) {
         postId: null,
         ...(process.env.NODE_ENV === "production"
           ? {
-              createdAt: {
-                lte: new Date(Date.now() - 1000 * 60 * 60 * 24),
-              },
-            }
+            createdAt: {
+              lte: new Date(Date.now() - 1000 * 60 * 60 * 24),
+            },
+          }
           : {}),
       },
       select: {
@@ -29,7 +29,6 @@ export async function GET(req: Request) {
         url: true,
       },
     });
-
     new UTApi().deleteFiles(
       unusedMedia.map(
         (m) =>
