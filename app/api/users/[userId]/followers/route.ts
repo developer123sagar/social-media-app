@@ -42,11 +42,8 @@ export async function GET(
       isFollowedByUser: !!user.followers.length,
     };
 
-    console.log(data)
-
     return Response.json(data);
   } catch (error) {
-    console.error(error);
     return Response.json({ error: "Internal server error" }, { status: 500 });
   }
 }

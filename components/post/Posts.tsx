@@ -13,6 +13,7 @@ import { formatRelativeDate } from "@/helpers";
 import { Media } from "@prisma/client";
 import { PostData } from "@/types";
 import { useSession } from "@/providers/SessionProvider";
+import LikeButton from "./LikeButton";
 
 interface PostProps {
   post: PostData;
@@ -63,6 +64,14 @@ const Posts = ({ post }: PostProps) => {
       {!!post.attachments.length && (
         <MediaPreviews attachments={post.attachments} />
       )}
+      <hr className="text-muted-foreground" />
+      <LikeButton
+        postId={post.id}
+        initialState={{
+          likes: post._count.likes,
+          isLikedByUser: post.likes.some((like) => like.userId === user.id),
+        }}
+      />
     </article>
   );
 };
