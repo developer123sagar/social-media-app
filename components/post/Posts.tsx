@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
@@ -39,6 +41,7 @@ const Posts = ({ post }: PostProps) => {
             </UserTooltip>
 
             <Link
+              suppressHydrationWarning
               href={`/posts/${post.id}`}
               className="block text-sm text-muted-foreground hover:underline"
             >
@@ -103,13 +106,15 @@ function MediaPreview({ media }: MediaPreviewProps) {
 
   if (media.type === "IMAGE") {
     return (
-      <Image
-        src={media.url}
-        alt="attachment"
-        width={500}
-        height={500}
-        className="mx-auto size-fit max-h-[30rem] rounded-2xl"
-      />
+      <Link href={`/posts/${media.postId}`}>
+        <Image
+          src={media.url}
+          alt="attachment"
+          width={500}
+          height={500}
+          className="mx-auto size-fit max-h-[30rem] rounded-2xl"
+        />
+      </Link>
     );
   }
 
