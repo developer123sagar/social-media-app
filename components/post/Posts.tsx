@@ -1,17 +1,18 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 
 import Linkify from "@/components/Linkify";
 import PostMoreButton from "@/components/post/PostMoreButton";
 import UserAvatar from "@/components/UserAvatar";
+import UserTooltip from "../UserTooltip";
+import { cn } from "@/lib/utils";
 import { formatRelativeDate } from "@/helpers";
+import { Media } from "@prisma/client";
 import { PostData } from "@/types";
 import { useSession } from "@/providers/SessionProvider";
-import UserTooltip from "../UserTooltip";
-import { Media } from "@prisma/client";
-import Image from "next/image";
-import { cn } from "@/lib/utils";
+import { useVisibilityObserver } from "@/hooks/useVisibilityObserver";
 
 interface PostProps {
   post: PostData;
@@ -102,9 +103,23 @@ function MediaPreview({ media }: MediaPreviewProps) {
   }
 
   if (media.type === "VIDEO") {
+    const videoRef = useVisibilityObserver(
+      () => {
+        if (videoRef.current) {
+          videoRef.current.play();
+        }
+      },
+      () => {
+        if (videoRef.current) {
+          videoRef.current.pause();
+        }
+      },
+    );
+
     return (
       <div>
         <video
+          ref={videoRef}
           src={media.url}
           controls
           className="mx-auto size-fit max-h-[30rem] rounded-2xl"
