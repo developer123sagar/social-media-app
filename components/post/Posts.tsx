@@ -1,7 +1,6 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 
 import Linkify from "@/components/Linkify";
 import PostMoreButton from "@/components/post/PostMoreButton";
@@ -12,7 +11,6 @@ import { formatRelativeDate } from "@/helpers";
 import { Media } from "@prisma/client";
 import { PostData } from "@/types";
 import { useSession } from "@/providers/SessionProvider";
-import { useVisibilityObserver } from "@/hooks/useVisibilityObserver";
 
 interface PostProps {
   post: PostData;
@@ -90,6 +88,19 @@ interface MediaPreviewProps {
 }
 
 function MediaPreview({ media }: MediaPreviewProps) {
+  const videoRef = useVisibilityObserver(
+    () => {
+      if (videoRef.current) {
+        videoRef.current.play();
+      }
+    },
+    () => {
+      if (videoRef.current) {
+        videoRef.current.pause();
+      }
+    },
+  );
+
   if (media.type === "IMAGE") {
     return (
       <Image
@@ -103,19 +114,6 @@ function MediaPreview({ media }: MediaPreviewProps) {
   }
 
   if (media.type === "VIDEO") {
-    const videoRef = useVisibilityObserver(
-      () => {
-        if (videoRef.current) {
-          videoRef.current.play();
-        }
-      },
-      () => {
-        if (videoRef.current) {
-          videoRef.current.pause();
-        }
-      },
-    );
-
     return (
       <div>
         <video
@@ -129,6 +127,36 @@ function MediaPreview({ media }: MediaPreviewProps) {
   }
 
   return <p className="text-destructive">Unsupported media type</p>;
+}
+
+function useVisibilityObserver(onVisible: () => void, onHidden: () => void) {
+  const elementRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          onVisible();
+        } else {
+          onHidden();
+        }
+      },
+      { threshold: 0.5 },
+    );
+
+    const currentRef = elementRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [onVisible, onHidden]);
+
+  return elementRef;
 }
 
 export default Posts;
