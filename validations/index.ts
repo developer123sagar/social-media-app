@@ -21,7 +21,8 @@ export const loginSchema = z.object({
 export type LoginValues = z.infer<typeof loginSchema>;
 
 export const createPostSchema = z.object({
-    content: requiredString
+    content: requiredString,
+    mediaIds: z.array(z.string()).max(3, "Can not have more than 3 attachments")
 })
 
 export const updateUserProfileSchema = z.object({
