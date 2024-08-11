@@ -1,8 +1,8 @@
 import { useState } from "react";
-
-import DeletePostDialog from "@/components/post/DeletePostDialog";
 import { MoreHorizontal, Trash2 } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
+import DeletePostDialog from "@/components/post/DeletePostDialog";
 import {
   DropdownMenu,
   DropdownMenuContent,

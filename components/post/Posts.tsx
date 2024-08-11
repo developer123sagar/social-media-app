@@ -17,6 +17,7 @@ import { formatRelativeDate } from "@/helpers";
 import { Media } from "@prisma/client";
 import { PostData } from "@/types";
 import { useSession } from "@/providers/SessionProvider";
+import ShareButton from "./ShareButtont";
 
 interface PostProps {
   post: PostData;
@@ -83,6 +84,7 @@ const Posts = ({ post }: PostProps) => {
             post={post}
             onClick={() => setShowComments(!showComments)}
           />
+          <ShareButton postUrl={`posts/${post.id}`} />
         </div>
         <BookmarkButton
           postId={post.id}
