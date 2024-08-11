@@ -48,7 +48,7 @@ export default function ShareButton({
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem onClick={copyPostUrl}>
-            <span className="flex cursor-pointer items-center gap-3 text-primary">
+            <span className="flex cursor-pointer items-center gap-3 text-foreground">
               <Link className="size-4" />
               Copy link
             </span>
