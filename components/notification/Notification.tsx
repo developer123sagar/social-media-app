@@ -1,9 +1,10 @@
-import UserAvatar from "@/components/UserAvatar";
-import { NotificationData } from "@/types";
-import { cn } from "@/lib/utils";
-import { NotificationType } from "@prisma/client";
-import { Heart, MessageCircle, User2 } from "lucide-react";
 import Link from "next/link";
+import { Heart, MessageCircle, User2 } from "lucide-react";
+
+import UserAvatar from "@/components/UserAvatar";
+import { cn } from "@/lib/utils";
+import { NotificationData } from "@/types";
+import { NotificationType } from "@prisma/client";
 
 interface NotificationProps {
   notification: NotificationData;
@@ -15,7 +16,7 @@ export default function Notification({ notification }: NotificationProps) {
     { message: string; icon: JSX.Element; href: string }
   > = {
     FOLLOW: {
-      message: `followed you`,
+      message: `started following you`,
       icon: <User2 className="size-7 text-primary" />,
       href: `/users/${notification.issuer.username}`,
     },
