@@ -1,10 +1,11 @@
 "use client";
 
-import useInitializeChatClient from "@/hooks/useInitializeChatClient";
+import { Chat as StreamChat } from "stream-chat-react";
 import { Loader2 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useState } from "react";
-import { Chat as StreamChat } from "stream-chat-react";
+
+import useInitializeChatClient from "@/hooks/useInitializeChatClient";
 import ChatSidebar from "./ChatSidebar";
 import ChatChannel from "./ChatChannel";
 

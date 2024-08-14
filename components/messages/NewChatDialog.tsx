@@ -1,3 +1,9 @@
+import { Check, Loader2, SearchIcon, X } from "lucide-react";
+import { DefaultStreamChatGenerics, useChatContext } from "stream-chat-react";
+import { UserResponse } from "stream-chat";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+
 import {
   Dialog,
   DialogContent,
@@ -9,11 +15,6 @@ import { useToast } from "@/components/ui/use-toast";
 import UserAvatar from "@/components/UserAvatar";
 import useDebounce from "@/hooks/useDebounce";
 import { useSession } from "@/providers/SessionProvider";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { Check, Loader2, SearchIcon, X } from "lucide-react";
-import { useState } from "react";
-import { UserResponse } from "stream-chat";
-import { DefaultStreamChatGenerics, useChatContext } from "stream-chat-react";
 import LoadingButton from "../LoadingButtont";
 
 interface NewChatDialogProps {

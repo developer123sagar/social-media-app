@@ -3,7 +3,6 @@
 @tailwind utilities;
 @import "~stream-chat-react/dist/css/v2/index.css";
 
-
 @layer base {
   :root {
     --background: 224, 5%, 95%;

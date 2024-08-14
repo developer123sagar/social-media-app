@@ -1,12 +1,13 @@
 "use client";
 
+import { Loader2 } from "lucide-react";
+import { useInfiniteQuery } from "@tanstack/react-query";
+
 import InfiniteScrollContainer from "@/components/InfiniteScrollContainer";
 import Posts from "@/components/post/Posts";
 import PostsLoadingSkeleton from "@/components/post/PostsLoadingSkeleton";
 import kyInstance from "@/lib/ky";
 import { PostsPage } from "@/types";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { Loader2 } from "lucide-react";
 
 interface SearchResultsProps {
   query: string;

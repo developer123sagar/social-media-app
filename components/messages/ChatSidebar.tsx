@@ -1,15 +1,16 @@
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { useSession } from "@/providers/SessionProvider";
-import { useQueryClient } from "@tanstack/react-query";
 import { MailPlus, X } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import {
   ChannelList,
   ChannelPreviewMessenger,
   ChannelPreviewUIComponentProps,
   useChatContext,
 } from "stream-chat-react";
+import { useCallback, useEffect, useState } from "react";
+
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { useSession } from "@/providers/SessionProvider";
 import NewChatDialog from "./NewChatDialog";
 
 interface ChatSidebarProps {
